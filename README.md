@@ -70,3 +70,46 @@ This dashboard demonstrates practical use of Power BI for:
 - Interactive visualization
 - Sales performance analysis
 - Supporting data-driven decision making
+
+
+# DSA 3050A: Business Intelligence & Data Visualization - Quiz
+## Google Play Store Apps Data Analysis 
+
+
+## Project Overview
+This project focuses on cleaning, transforming, and modeling data from the Google Play Store to enable effective analysis. The dataset contains details of applications and user reviews, which were processed to fix data quality issues and establish a relational data model. The transformations and modeling were performed using Power Query and Power BI.
+
+## Dataset
+* **Source**: The data is sourced from Kaggle, titled "Google Play Store Apps" (Feb 2019) by L. Gupta.
+* **Files**: The analysis utilizes the `googleplaystore.csv` and `googleplaystore_user_reviews.csv` files.
+
+## Data Cleaning and Transformation
+Several data quality issues were addressed using Power Query to prepare the data for analysis:
+* **Headers**: Fixed the `googleplaystore_user_reviews` table by renaming columns and removing the first row, as the column names were initially being counted as a data row.
+* **Missing Values**: Removed missing or `(blank)` values from the `Translated_Review` column. Additionally, filtered out useless `nan` values from both the user reviews table and the `Rating` column in the main app table.
+* **Data Type Conversions**:
+    * Changed the `Last Updated` column from text to a date format.
+    * Changed the `Reviews` column from text to a whole number, as review counts cannot contain words.
+    * Changed the `Rating` column from text to a decimal number.
+* **Currency Parsing**: Used the English (United States) locale setting to successfully parse the `$` sign in the `Price` column, converting it from a text type to a numeric value.
+* **Text Extraction**: Trimmed, cleaned, capitalized, and split the "Android Ver" column to create two new columns: `Min Android Ver` and `Max Android Ver`.
+
+## Feature Engineering
+New columns and tables were generated to aid in analysis and categorization:
+* **Rating Category**: A conditional column was added to classify app ratings as "High" (greater than 4), "Medium" (greater than 2.5), or "Low" (otherwise).
+* **Price With Tax**: A custom column was calculated using the formula `=[Price]*1.08`.
+* **Category Stats Table**: A duplicated table was created and grouped by `Category` to output `Total Apps` (using the Count Rows operation) and `Average Rating` (using the Average operation).
+
+## Data Modeling
+The project utilizes a relational data model with the following architecture:
+* **Dimension Table**: The `googleplaystore` table acts as the dimension table because it contains descriptive attributes about the apps and serves as a lookup table.
+* **Fact Table**: The `googleplaystore_user_reviews` table serves as the fact table because it records frequent events, specifically the individual reviews submitted by users.
+* **Relationship**: A 1-to-Many relationship is established between the `googleplaystore` and `googleplaystore_user_reviews` tables using the `App` column.
+* **Key Uniqueness**: To resolve a many-to-many cardinality warning and prevent filter ambiguity that inflates totals, the `App` column in the dimension table was trimmed, converted to lowercase, and stripped of duplicates to ensure a strictly unique primary key.
+* **Date Table**: A dedicated calendar table (containing Date, Year, and Month Name) is necessary to utilize built-in Time Intelligence DAX functions (like Year-to-Date) and to act as a central filter for slicing continuous dates.
+
+## Data Dictionary
+Key columns utilized within the model include:
+
+| Table | Column | Meaning | Type | Key/Attribute |
+| :--- | :--- | :--- | :--- |
