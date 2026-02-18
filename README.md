@@ -74,7 +74,7 @@ This dashboard demonstrates practical use of Power BI for:
 
 # DSA 3050A: Business Intelligence & Data Visualization - Quiz
 ## Google Play Store Apps Data Analysis 
-
+https://github.com/mohayo8/DSA3050_Power_Bi_Assignment-Mohamed-006/tree/main/Quiz
 
 ## Project Overview
 This project focuses on cleaning, transforming, and modeling data from the Google Play Store to enable effective analysis. The dataset contains details of applications and user reviews, which were processed to fix data quality issues and establish a relational data model. The transformations and modeling were performed using Power Query and Power BI.
