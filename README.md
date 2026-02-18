@@ -112,4 +112,12 @@ The project utilizes a relational data model with the following architecture:
 Key columns utilized within the model include:
 
 | Table | Column | Meaning | Type | Key/Attribute |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- |
+| **googleplaystore** | `App` | Unique name of the application | Text | Primary Key |
+| **googleplaystore** | `Price` | Cost of the app (after locale conversion) | Currency | Attribute |
+| **googleplaystore** | `Rating Category` | Custom conditional grouping (High/Medium/Low) | Text | Attribute |
+| **googleplaystore** | `Min Android Version` | Minimum OS required (from split column step) | Text | Attribute |
+| **googleplaystore** | `Last Updated` | The date the application was last updated | Date | Attribute |
+| **googleplaystore_user_reviews** | `App` | Name of the app being reviewed | Text | Foreign Key |
+| **googleplaystore_user_reviews** | `Translated_Review` | The user's written feedback in English | Text | Attribute |
+| **googleplaystore_user_reviews** | `Sentiment` | The emotional tone of the review (Positive/Negative) | Text | Attribute |
