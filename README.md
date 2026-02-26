@@ -146,14 +146,14 @@ To optimize the dashboard's performance and cross-filtering capabilities, the fl
 
 
 * **Building Dimension Tables:** The main fact table was referenced to create separate dimension tables. [cite_start]`Dim_Product` isolated the `Category` and `Size` attributes [cite: 10][cite_start], while `Dim_Location` isolated `ship-city`, `ship-state`, `ship-postal-code`, and `ship-country`[cite: 12]. [cite_start]Duplicates were removed from both tables, and Index columns were added to serve as unique Primary Keys[cite: 11, 13].
-* [cite_start]**Optimizing the Fact Table:** The new dimension tables were merged back into the `Facts_AmazonSales` table to bring over the respective `Location_ID` and `Product_ID`[cite: 14, 15]. [cite_start]The heavy, redundant text columns were then deleted from the fact table, vastly improving query speed[cite: 16].
-* [cite_start]**Establishing Relationships:** Within the Model view, active relationships were established[cite: 17, 18]. [cite_start]The dimension tables were connected to the fact table using a Many-to-one (*:1) cardinality and a Single cross-filter direction[cite: 19, 20].
+**Optimizing the Fact Table:** The new dimension tables were merged back into the `Facts_AmazonSales` table to bring over the respective `Location_ID` and `Product_ID`.The heavy, redundant text columns were then deleted from the fact table, vastly improving query speed.
+**Establishing Relationships:** Within the Model view, active relationships were established[cite: 17, 18]. [cite_start]The dimension tables were connected to the fact table using a Many-to-one (*:1) cardinality and a Single cross-filter direction[cite: 19, 20].
 
 ## 4. Dashboard Development & Insights
-[cite_start]The final step involved building an interactive dashboard focused on actionable business insights[cite: 21]:
-* [cite_start]**High-Level KPIs:** Top-level cards immediately inform stakeholders of Total Sales (78.59M), Total Orders (120.229K), and the Average Order Value (609.34)[cite: 21].
-* [cite_start]**Trend & Distribution:** A line chart maps the monthly sales trajectory, while a donut chart provides a clear breakdown of order fulfillment statuses (e.g., Shipped vs. Cancelled)[cite: 21].
-* [cite_start]**Geospatial & Category Tracking:** A map visual highlights geographical sales distributions, and a clustered bar chart ranks revenue across different product categories like T-shirts and Shirts[cite: 21].
+The final step involved building an interactive dashboard focused on actionable business insights:
+**High-Level KPIs:** Top-level cards immediately inform stakeholders of Total Sales (78.59M), Total Orders (120.229K), and the Average Order Value (609.34)[cite: 21].
+**Trend & Distribution:** A line chart maps the monthly sales trajectory, while a donut chart provides a clear breakdown of order fulfillment statuses (e.g., Shipped vs. Cancelled)[cite: 21].
+**Geospatial & Category Tracking:** A map visual highlights geographical sales distributions, and a clustered bar chart ranks revenue across different product categories like T-shirts and Shirts[cite: 21].
 **Interactivity:** Slicers for `B2B` (True/False) and `Month Name` allow users to dynamically filter the entire page to isolate specific trends[cite: 21].
 
 ## 5. Live Deployment
