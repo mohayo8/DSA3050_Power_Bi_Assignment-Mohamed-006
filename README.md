@@ -125,38 +125,37 @@ Key columns utilized within the model include:
 
 # DSA 3050A: Business Intelligence & Data Visualization - Mid Sem
 ## Amazon E-commerce Sales Analysis - End-to-End Power BI Project
+https://github.com/mohayo8/DSA3050_Power_Bi_Assignment-Mohamed-006/tree/main/DSA3050Midsem
 
 ## Project Overview
 This project serves as a comprehensive Business Intelligence solution, transforming raw e-commerce data into an interactive, executive-level dashboard. The goal was to demonstrate the complete data analytics lifecycle: sourcing, ETL (Extract, Transform, Load) operations via Power Query, relational data modeling, and visualization.
 
 ## 1. Data Sourcing
-[cite_start]The foundational dataset was obtained from Kaggle, specifically the "AmazonSalesReport" by Arpit Mishra[cite: 1]. [cite_start]This dataset was selected because it provides comprehensive, real-world transactional data detailing order statuses, product categories, pricing, and fulfillment methods over time[cite: 1]. 
+The foundational dataset was obtained from Kaggle, specifically the "AmazonSalesReport" by Arpit Mishra. This dataset was selected because it provides comprehensive, real-world transactional data detailing order statuses, product categories, pricing, and fulfillment methods over time. 
 
 ## 2. Data Preparation & Transformation (ETL)
 Raw data rarely arrives ready for analysis. Using Power Query, the dataset underwent extensive cleaning and transformation to ensure accuracy and usability:
-* [cite_start]**Establishing Structure:** Promoted the first row to act as headers and explicitly defined the data types for each column to ensure calculations functioned correctly[cite: 2]. [cite_start]Completely empty columns were permanently removed[cite: 3].
-* **Handling Null Values:** Addressed missing data systematically to maintain data integrity. [cite_start]Null values in the `Amount` column were replaced with `0`, as these instances correlated directly to canceled orders[cite: 4]. [cite_start]Nulls in the `fulfilled-by` column were replaced with "Amazon"[cite: 5].
-* **Standardizing Text:** Inconsistent data entries can ruin dashboard grouping. [cite_start]To fix this, the `ship-city` column was formatted to capitalize each word[cite: 6].
-* [cite_start]**Feature Engineering:** To enable robust time-series analysis, new columns for `Year` and `Month Name` were extracted from the main date field[cite: 7]. [cite_start]Additionally, a conditional column named `Order_Value_Tier` was created to categorize orders greater than 1000 as "High Value"[cite: 8].
-* [cite_start]The main query was professionally renamed to `Facts_AmazonSales`[cite: 9].
+- **Establishing Structure:** Promoted the first row to act as headers and explicitly defined the data types for each column to ensure calculations functioned correctly. Completely empty columns were permanently removed.
+- **Handling Null Values:** Addressed missing data systematically to maintain data integrity. Null values in the Amount column were replaced with 0, as these instances correlated directly to canceled orders. Nulls in the fulfilled-by column were replaced with "Amazon".
+- **Standardizing Text:** Inconsistent data entries can ruin dashboard grouping. To fix this, the ship-city column was formatted to capitalize each word.
+- **Feature Engineering:** To enable robust time-series analysis, new columns for Year and Month Name were extracted from the main date field. Additionally, a conditional column named Order_Value_Tier was created to categorize orders greater than 1000 as "High Value".
+- The main query was professionally renamed to Facts_AmazonSales.
 
 ## 3. Relational Data Modeling (Star Schema)
 To optimize the dashboard's performance and cross-filtering capabilities, the flat dataset was normalized into a Star Schema structure. 
 
-
-
-* **Building Dimension Tables:** The main fact table was referenced to create separate dimension tables. [cite_start]`Dim_Product` isolated the `Category` and `Size` attributes [cite: 10][cite_start], while `Dim_Location` isolated `ship-city`, `ship-state`, `ship-postal-code`, and `ship-country`[cite: 12]. [cite_start]Duplicates were removed from both tables, and Index columns were added to serve as unique Primary Keys[cite: 11, 13].
-**Optimizing the Fact Table:** The new dimension tables were merged back into the `Facts_AmazonSales` table to bring over the respective `Location_ID` and `Product_ID`.The heavy, redundant text columns were then deleted from the fact table, vastly improving query speed.
-**Establishing Relationships:** Within the Model view, active relationships were established[cite: 17, 18]. [cite_start]The dimension tables were connected to the fact table using a Many-to-one (*:1) cardinality and a Single cross-filter direction[cite: 19, 20].
+- **Building Dimension Tables:** The main fact table was referenced to create separate dimension tables. Dim_Product isolated the Category and Size attributes, while Dim_Location isolated ship-city, ship-state, ship-postal-code, and ship-country. Duplicates were removed from both tables, and Index columns were added to serve as unique Primary Keys.
+- **Optimizing the Fact Table:** The new dimension tables were merged back into the Facts_AmazonSales table to bring over the respective Location_ID and Product_ID. The heavy, redundant text columns were then deleted from the fact table, vastly improving query speed.
+- **Establishing Relationships:** Within the Model view, active relationships were established. The dimension tables were connected to the fact table using a Many-to-one cardinality and a Single cross-filter direction.
 
 ## 4. Dashboard Development & Insights
 The final step involved building an interactive dashboard focused on actionable business insights:
-**High-Level KPIs:** Top-level cards immediately inform stakeholders of Total Sales (78.59M), Total Orders (120.229K), and the Average Order Value (609.34)[cite: 21].
-**Trend & Distribution:** A line chart maps the monthly sales trajectory, while a donut chart provides a clear breakdown of order fulfillment statuses (e.g., Shipped vs. Cancelled)[cite: 21].
-**Geospatial & Category Tracking:** A map visual highlights geographical sales distributions, and a clustered bar chart ranks revenue across different product categories like T-shirts and Shirts[cite: 21].
-**Interactivity:** Slicers for `B2B` (True/False) and `Month Name` allow users to dynamically filter the entire page to isolate specific trends[cite: 21].
+- **High-Level KPIs:** Top-level cards immediately inform stakeholders of Total Sales (78.59M), Total Orders (120.229K), and the Average Order Value (609.34).
+- **Trend & Distribution:** A line chart maps the monthly sales trajectory, while a donut chart provides a clear breakdown of order fulfillment statuses (e.g., Shipped vs. Cancelled).
+- **Geospatial & Category Tracking:** A map visual highlights geographical sales distributions, and a clustered bar chart ranks revenue across different product categories like T-shirts and Shirts.
+- **Interactivity:** Slicers for B2B (True/False) and Month Name allow users to dynamically filter the entire page to isolate specific trends.
 
 ## 5. Live Deployment
 The finalized report was published from Power BI Desktop to the Power BI Service for web accessibility.
 
-**View the interactive dashboard here:** [Public Power BI Dashboard Link](https://app.powerbi.com/view?r=eyJrIjoiNWY1NDYxNTUtYjc5Ny00YTU3LWEyMjgtZTNlYWNlYzZkMTE4IiwidCI6IjE2ZDgzZWU2LTI1NGEtNDY5ZC1hNmNjLTU0ZTJjYTIzMTNlNyIsImMiOjh9) [cite: 22]
+**View the interactive dashboard here:** [Public Power BI Dashboard Link](https://app.powerbi.com/view?r=eyJrIjoiNWY1NDYxNTUtYjc5Ny00YTU3LWEyMjgtZTNlYWNlYzZkMTE4IiwidCI6IjE2ZDgzZWU2LTI1NGEtNDY5ZC1hNmNjLTU0ZTJjYTIzMTNlNyIsImMiOjh9)
